@@ -32,32 +32,37 @@ class sender(Account):
 
     def __init__(self):
         self.load_profile()
-        self.to_addr = []
+        self.to_addrs = []
         self.msg = ''
 
     def compose(self):
         lines = []
-        line = 'first line will be droped'
-        while line == '':
+        print('======    message   ====== (end msg with ;)')
+        line = ''
+        while line != ';':
             lines.append(line)
             line = input()
-        self.msg = '\n'.join(lines[1:])
+        self.msg = '\n'.join(lines)
 
     def get_to_addr(self):
         addr = 'first address will be droped'
-        while addr == '':
-            self.to_addr.append(addr)
+        print('======    addresss   ======')
+        while addr != '':
+            self.to_addrs.append(addr)
             addr = input()
 
-    def send(from_addr, password, smtp_server, to_addr):
-        server = smtplib.SMTP(smtp_server, 25)
-        server.login(from_addr, password)
-        server.sendmail(from_addr, [to_addr])
+    def send(self):
+        server = smtplib.SMTP(self.smtp_server, self.smtp_tls)
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
+        server.login(self.email, self.password)
+        server.sendmail(self.email, self.to_addrs, self.msg)
         server.quit()
 
 
 if __name__ == '__main__':
-    from_addr = input('From: ')
-    password = input('Password: ')
-    smtp_server = input('SMTP server: ')
-    to_addr = input('To: ')
+  new = sender()
+  new.get_to_addr()
+  new.compose()
+  new.send()
