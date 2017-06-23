@@ -1,0 +1,13 @@
+{
+  "email": "shengqiu.purdue@gmail.com",
+  "password": "Last270731",
+  "smtp":{
+    "server": "smtp.gmail.com",
+    "tls": 587,
+    "ssl": 465
+  },
+  "imap":{
+    "server": "imap.gmail.com",
+    "tls": 465
+  }
+}
