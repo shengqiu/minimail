@@ -42,7 +42,7 @@ class sender(Account):
         while line != ';':
             lines.append(line)
             line = input()
-        self.msg = '\n'.join(lines)
+        self.msg = '\r\n'.join(lines)
 
     def get_to_addr(self):
         addr = 'first address will be droped'
