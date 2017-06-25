@@ -29,16 +29,16 @@ class Imap(Account):
     self.tag_byte = server.list()[1]
     self.tags = [*map(get_tag, server.list()[1])]
     # Out: list of "folders" aka labels in gmail.
-    print('========================================')
-    print(' There are following tags in your gmail ')
-    print('========================================')
+    print('==========================')
+    print(' There are following tags ')
+    print('==========================')
     tag_index = 0
     for tag in self.tags:
       print('{}\t{}'.format(tag_index, tag))
       tag_index += 1
-    print('========================================')
-    print(' Choose the tag, but key in the number  ')
-    print('========================================')
+    print('======================================')
+    print(' Choose the tag, by key in the number ')
+    print('======================================')
     tag_selected_index = get_numeric_input(len(self.tags))
     tag_selected = self.tags[int(tag_selected_index)]
     print('Selected {} tag'.format(tag_selected))
