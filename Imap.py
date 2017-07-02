@@ -47,16 +47,16 @@ class Imap(Account):
         server.select('inbox')
         # connect to inbox.
         result, data = server.uid('search', None, "ALL")
-        latest_email_uid = data[0].split()[-1]
-        result, data = server.uid('fetch', latest_email_uid, '(RFC822)')
-        # raw_email = data[0][1]
-        # id = data[0][0]
-        raw = str(data[0][1])
-        email_text = get_email_text(raw)
-        with open('raw.txt', 'w') as f_:
-            f_.write(email_text)
+        uid_list = data[0].split()
+        for inbox_uid in uid_list:
+            result, data = server.uid('fetch', inbox_uid, '(RFC822)')
+            # raw_email = data[0][1]
+            # id = data[0][0]
+            raw = str(data[0][1])
+            email_text = get_email_text(raw)
+            with open('emails/{}.txt'.format(inbox_uid), 'w') as f_:
+                f_.write(email_text)
         server.close()
-        # print(msg)
 
 
 def get_tag(tag_byte):
