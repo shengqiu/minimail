@@ -12,5 +12,6 @@ def test_header_parser():
     new = Parser(mypath + email_file)
     print(new.get_headers())
 
+
 if __name__ == '__main__':
   test_header_parser()
