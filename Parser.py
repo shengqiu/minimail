@@ -1,7 +1,3 @@
-from os import listdir
-from os.path import isfile, join
-
-
 class HeaderFormatError(Exception):
   def __init__(self, num_of_column):
     self.num_of_column = num_of_column
@@ -35,18 +31,15 @@ class Parser:
       header_dict.update(temp)
     return header_dict
 
-  def get_content(self):
+  def get_content_text(self):
     self.headers = self.get_headers()
-    content_text = self.email_text\
-                  .replace(self.get_headers(), '')\
-		          .strip()
-    content_encoding = self.headers['content-transfer-encoding']
+    return self.email_text\
+               .replace(self.get_headers(), '')\
+               .strip()
+
+  def get_content(self):
+    # content_encoding = self.headers['content-transfer-encoding']
     content_type = self.headers['content-type']
-
-
-if __name__ == '__main__':
-  mypath = '/home/f/minimail/emails'
-  onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-  new = Parser(file_name)
-  print(new.get_headers())
-
+    content_text = self.get_content_text()
+    content_decoded = content_text.decode(content_type, 'ignore')
+    return content_decoded
