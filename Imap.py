@@ -2,8 +2,6 @@
 import imaplib
 from Account import Account
 import email
-import re
-import base64
 
 
 def get_numeric_input(upper_limit):
@@ -55,7 +53,8 @@ class Imap(Account):
             # id = data[0][0]
             raw = str(data[0][1])
             email_text = get_email_text(raw)
-            with open('emails/{}.txt'.format((inbox_uid).decode('utf-8')), 'w') as f_:
+            email_file = 'emails/{}.txt'.format((inbox_uid).decode('utf-8'))
+            with open(email_file, 'w') as f_:
                 f_.write(email_text)
         server.close()
 

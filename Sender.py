@@ -36,7 +36,7 @@ class sender(Account):
 
 
 if __name__ == '__main__':
-  new = sender()
-  new.get_to_addr()
-  new.compose()
-  new.send()
+    new = sender()
+    new.get_to_addr()
+    new.compose()
+    new.send()
