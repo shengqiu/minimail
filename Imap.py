@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import imaplib
 from Account import Account
 import email
@@ -54,7 +55,7 @@ class Imap(Account):
             # id = data[0][0]
             raw = str(data[0][1])
             email_text = get_email_text(raw)
-            with open('emails/{}.txt'.format(inbox_uid), 'w') as f_:
+            with open('emails/{}.txt'.format((inbox_uid).decode('utf-8')), 'w') as f_:
                 f_.write(email_text)
         server.close()
 
