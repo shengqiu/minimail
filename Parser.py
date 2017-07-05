@@ -32,14 +32,17 @@ class Parser:
     return header_dict
 
   def get_content_text(self):
-    self.headers = self.get_headers()
+    headers = self.get_headers()
     return self.email_text\
-               .replace(self.get_headers(), '')\
+               .replace(headers, '')\
                .strip()
 
   def get_content(self):
     # content_encoding = self.headers['content-transfer-encoding']
+    self.headers = self.get_headers()
     content_type = self.headers['content-type']
+    print('content type is {}'.format(content_type))
     content_text = self.get_content_text()
-    content_decoded = content_text.decode(content_type, 'ignore')
-    return content_decoded
+    print('content text is {}'.format(content_text))
+    # content_decoded = content_text.decode(content_type, 'ignore')
+    # return content_decoded

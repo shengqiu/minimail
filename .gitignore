@@ -109,3 +109,6 @@ ENV/
 
 # ignore emails folder
 emails/
+
+# ignore the email json file
+gmail.json
